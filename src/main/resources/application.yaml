@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: hello-spring-ai-rag
+  ai:
+    vectorstore:
+      milvus:
+        client:
+          host: localhost
+          port: 19530
+          username: root
+          password: milvus
+        database-name: ${MILVUS_DATABASE:default}
+        collection-name: ${MILVUS_COLLECTION:vector_store}
+        initialize-schema: ${MILVUS_INIT_SCHEMA:true}
+        embedding-dimension: ${MILVUS_EMBED_DIM:1536}
+        index-type: ${MILVUS_INDEX_TYPE:HNSW}
+        metric-type: ${MILVUS_METRIC_TYPE:COSINE}
+
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://localhost:11434}
+      chat:
+        options:
+          model: ${OLLAMA_CHAT_MODEL:llama3.2}
+          temperature: ${OLLAMA_TEMPERATURE:0.2}
+      embedding:
+        options:
+          model: ${OLLAMA_EMBED_MODEL:nomic-embed-text}
